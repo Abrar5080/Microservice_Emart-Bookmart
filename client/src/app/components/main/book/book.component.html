@@ -1,0 +1,66 @@
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-center mb-4">
+        <button (click)="abc()" class="btn btn-primary mx-2">All Books</button>
+        <button (click)="addBookFlag()" class="btn btn-success mx-2">Add Book</button>
+        <button (click)="displayAllPublishedBooks()" class="btn btn-info mx-2">Published Books</button>
+    </div>
+
+    <hr>
+
+    <div *ngIf="displayAllBooks" class="table-container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Author</th>
+                    <th>Publisher</th>
+                    <th>Published</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let b of books">
+                    <td>{{b.title}}</td>
+                    <td>{{b.author}}</td>
+                    <td>{{b.publisher}}</td>
+                    <td>{{b.published}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="displayAddBookForm" class="p-3 bg-light rounded">
+        <h3 class="text-center text-success">Add a New Book</h3>
+        <form action="" method="POST">
+            <div class="mb-3">
+                <input type="text" class="form-control" placeholder="Title" #title>
+            </div>
+            <div class="mb-3">
+                <input type="text" class="form-control" placeholder="Author" #author>
+            </div>
+            <div class="mb-3">
+                <input type="text" class="form-control" placeholder="Publisher" #publisher>
+            </div>
+            <button type="submit" (click)="addBook(title, author, publisher)" class="btn btn-success w-100">Submit</button>
+        </form>
+    </div>
+
+    <div *ngIf="displayPublishedBooks" class="table-container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Author</th>
+                    <th>Publisher</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let b of books_p">
+                    <td>{{b.title}}</td>
+                    <td>{{b.author}}</td>
+                    <td>{{b.publisher}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

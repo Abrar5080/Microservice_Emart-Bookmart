@@ -1,0 +1,28 @@
+.nav-link {
+    margin: 0px 15px;
+    color: #ffffff !important;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+    padding: 8px 15px;
+}
+
+.nav-link:hover {
+    background: linear-gradient(135deg, #add8e6, #b3e5fc);
+    color: #0d47a1 !important;
+    text-decoration: none;
+}
+.custom-badge {
+    background: linear-gradient(135deg, #add8e6, #b3e5fc);
+    color: #0d47a1;
+    font-weight: 600;
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.custom-badge:hover {
+    background: linear-gradient(135deg, #81d4fa, #b3e5fc);
+    color: #0a2c5d;
+}

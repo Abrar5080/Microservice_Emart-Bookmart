@@ -1,0 +1,59 @@
+To create database-
+use epoc;
+
+To create tables-
+db.createCollection("categories");
+db.createCollection("orders");
+db.createCollection("products");
+db.createCollection("users");
+
+Insert Data-
+
+In category table-
+
+db.categories.insertMany([
+    { "_id": ObjectId("652ef8c72d2a9abcd1234567"), "name": "Electronics" },
+    { "_id": ObjectId("652ef8c72d2a9abcd1234568"), "name": "Mobile Devices" },
+    { "_id": ObjectId("652ef8c72d2a9abcd1234569"), "name": "Audio Equipment" }
+]);
+
+In Products table -
+
+db.products.insertMany([
+    {
+        "prod_name": "Laptop",
+        "price": 999.99,
+        "imageUrl": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&auto=format&fit=crop&q=60",
+        "category": ObjectId("652ef8c72d2a9abcd1234567") // Electronics
+    },
+    {
+        "prod_name": "Gaming Laptop",
+        "price": 1499.99,
+        "imageUrl": "https://images.unsplash.com/photo-1658262530868-f7460e2f071f?w=600&auto=format&fit=crop&q=60",
+        "category": ObjectId("652ef8c72d2a9abcd1234567") // Electronics
+    },
+    {
+        "prod_name": "Smartwatch",
+        "price": 299.99,
+        "imageUrl": "https://images.unsplash.com/photo-1617625802912-cde586faf331?q=80&w=1932&auto=format&fit=crop",
+        "category": ObjectId("652ef8c72d2a9abcd1234568") // Mobile Devices
+    },
+    {
+        "prod_name": "Bluetooth Speaker",
+        "price": 129.99,
+        "imageUrl": "https://images.unsplash.com/photo-1589001181560-a8df1800e501?w=600&auto=format&fit=crop&q=60",
+        "category": ObjectId("652ef8c72d2a9abcd1234569") // Audio Equipment
+    },
+    {
+        "prod_name": "Wireless Earbuds",
+        "price": 199.99,
+        "imageUrl": "https://images.unsplash.com/photo-1590658006821-04f4008d5717?q=80&w=1932&auto=format&fit=crop",
+        "category": ObjectId("652ef8c72d2a9abcd1234569") // Audio Equipment
+    },
+    {
+        "prod_name": "Mechanical Keyboard",
+        "price": 89.99,
+        "imageUrl": "https://images.unsplash.com/photo-1626958390898-162d3577f293?w=600&auto=format&fit=crop&q=60",
+        "category": ObjectId("652ef8c72d2a9abcd1234567") // Electronics
+    }
+]);

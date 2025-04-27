@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-MART - Premium Shopping Experience</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;       
+            --primary-dark: #1d4ed8;
+            --secondary: #f43f5e;     
+            --accent: #10b981;        
+            --dark: #1e293b;         
+            --light: #f8fafc;         
+            --gray: #94a3b8;         
+            --light-gray: #e2e8f0;    
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
+            
+            /* Border Radius */
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            
+            /* Transitions */
+            --transition-fast: 0.2s ease;
+            --transition-medium: 0.3s ease;
+            --transition-slow: 0.5s ease;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark);
+            background-color: var(--light);
+            line-height: 1.6;
+        }
+
+        /* Custom Button Styles */
+        .btn-primary {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            border-color: var(--primary-dark);
+        }
+
+        .btn-accent {
+            background-color: var(--accent);
+            border-color: var(--accent);
+            color: white;
+        }
+
+        .btn-accent:hover {
+            background-color: #0d9f6e;
+            border-color: #0d9f6e;
+            color: white;
+        }
+
+        /* Hero Carousel */
+        .hero-carousel {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 3rem;
+        }
+
+        .carousel-item {
+            height: 500px;
+        }
+
+        .carousel-item img {
+            object-fit: cover;
+            height: 100%;
+            filter: brightness(0.8);
+        }
+
+        .carousel-caption {
+            bottom: 30%;
+            text-align: left;
+            padding: 2rem;
+            background: rgba(30, 41, 59, 0.7);
+            border-radius: var(--radius-md);
+            backdrop-filter: blur(5px);
+        }
+
+        .carousel-caption h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .carousel-caption p {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .carousel-indicators button {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin: 0 5px;
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2:after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-header p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Offer Cards */
+        .offer-card {
+            background: white;
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition-medium);
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            cursor: pointer;
+            border-top: 4px solid transparent;
+        }
+
+        .offer-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .offer-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .offer-card h3 i {
+            color: var(--primary);
+        }
+
+        .tech-deals {
+            border-top-color: var(--primary);
+        }
+
+        .fashion-deals {
+            border-top-color: var(--secondary);
+        }
+
+        .offer-badge {
+            position: absolute;
+            top: 15px;
+            right: -30px;
+            background-color: var(--secondary);
+            color: white;
+            padding: 0.25rem 2rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transform: rotate(45deg);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-grid img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            border-radius: var(--radius-sm);
+            transition: var(--transition-fast);
+        }
+
+        .offer-card:hover .product-grid img {
+            transform: scale(1.05);
+        }
+
+        .offer-details {
+            background-color: var(--light-gray);
+            padding: 1rem;
+            border-radius: var(--radius-sm);
+        }
+
+        .discount {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .expiry {
+            font-size: 0.9rem;
+            color: var(--gray);
+            font-weight: 500;
+        }
+
+        /* Info Card */
+        .info-card {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            border-radius: var(--radius-md);
+            padding: 2rem;
+            height: 100%;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-card:before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+
+        .info-card:after {
+            content: '';
+            position: absolute;
+            bottom: -80px;
+            right: -30px;
+            width: 200px;
+            height: 200px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+        }
+
+        .info-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .info-content h3 i {
+            color: var(--accent);
+        }
+
+        .info-content p {
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        .loading-spinner {
+            display: flex;
+            justify-content: center;
+            margin: 1rem 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-item {
+            text-align: center;
+            flex: 1;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--light-gray);
+            opacity: 0.9;
+        }
+
+        /* Product Cards */
+        .product-card {
+            background: white;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition-medium);
+            margin-bottom: 1.5rem;
+            position: relative;
+            border: 1px solid var(--light-gray);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: var(--secondary);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .product-image-container {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            background-color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+            transition: var(--transition-medium);
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+
+        .product-details {
+            padding: 1.5rem;
+        }
+
+        .product-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--dark);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .price-container {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .current-price {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .original-price {
+            font-size: 0.9rem;
+            color: var(--gray);
+            text-decoration: line-through;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-cart, .btn-buy {
+            flex: 1;
+            padding: 0.5rem;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-weight: 500;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-cart {
+            background-color: var(--light-gray);
+            color: var(--dark);
+        }
+
+        .btn-cart:hover {
+            background-color: #d1dbe5;
+        }
+
+        .btn-buy {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-buy:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* User Welcome */
+        .user-welcome {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+            padding: 2rem;
+            margin: 0 1.5rem 2rem;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .user-welcome:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Q50,80 0,100 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+            background-size: 100% 100%;
+            opacity: 0.5;
+        }
+
+        .welcome-image {
+            height: 200px;
+            border-radius: var(--radius-sm);
+            box-shadow: var(--shadow-lg);
+            z-index: 1;
+        }
+
+        /* Modal Styles */
+        .modal-content {
+            border: none;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .modal-header {
+            background-color: var(--primary);
+            color: white;
+            border-bottom: none;
+            padding: 1.25rem 1.5rem;
+        }
+
+        .modal-title {
+            font-weight: 600;
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .modal-footer {
+            border-top: 1px solid var(--light-gray);
+            padding: 1rem 1.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer h5 {
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--light);
+        }
+
+        .footer ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer ul li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer ul li a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: var(--transition-fast);
+        }
+
+        .footer ul li a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 1.5rem;
+            margin-top: 2rem;
+            text-align: center;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            .carousel-item {
+                height: 400px;
+            }
+            
+            .user-welcome {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .carousel-item {
+                height: 350px;
+            }
+            
+            .carousel-caption {
+                bottom: 20%;
+                padding: 1.5rem;
+            }
+            
+            .carousel-caption h2 {
+                font-size: 2rem;
+            }
+            
+            .carousel-caption p {
+                font-size: 1rem;
+            }
+            
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .product-actions {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .carousel-item {
+                height: 300px;
+            }
+            
+            .section-header h2 {
+                font-size: 1.75rem;
+            }
+            
+            .offer-card h3, .info-content h3 {
+                font-size: 1.25rem;
+            }
+            
+            .product-details {
+                padding: 1rem;
+            }
+
+            .carousel-caption {
+                bottom: 10%;
+                padding: 1rem;
+            }
+
+            .carousel-caption h2 {
+                font-size: 1.5rem;
+            }
+
+            .carousel-caption .btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!----EXPLORE starts---->
+    <div class="container">
+        <!-- Modern Carousel Section -->
+        <div id="mainCarousel" class="carousel slide hero-carousel" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="d-block w-100" src="https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80" alt="First slide">
+                    <div class="carousel-caption">
+                        <h2>Welcome to E-MART</h2>
+                        <p>Premium Shopping Experience with the latest trends and technologies</p>
+                        <a href="#" class="btn btn-primary btn-lg">Shop Now</a>
+                    </div>
+                </div>
+                
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80" alt="Second slide">
+                    <div class="carousel-caption">
+                        <h2>Summer Collection</h2>
+                        <p>Discover our new arrivals for the season</p>
+                        <a href="#" class="btn btn-primary btn-lg">Explore</a>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80" alt="Third slide">
+                    <div class="carousel-caption">
+                        <h2>Tech Gadgets</h2>
+                        <p>The latest in technology at unbeatable prices</p>
+                        <a href="#" class="btn btn-primary btn-lg">Browse Tech</a>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80" alt="Fourth slide">
+                    <div class="carousel-caption">
+                        <h2>Flash Sale</h2>
+                        <p>Limited time offers with up to 70% off</p>
+                        <a href="#" class="btn btn-primary btn-lg">View Deals</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!----EXPLORE Ends---->
+
+    <div class="data-section">
+        <!-------- Notifications Section -------->
+        <div class="user-welcome">
+            <div class="notification-panel" style="z-index: 1;">
+                <h3>Welcome back!</h3>
+                <p>Want Some Books? Visit our books store now</p>
+                <div class="d-flex gap-2">
+                  <button routerLink="/book" class="btn btn-primary">BooksMart</button>
+                </div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" class="welcome-image" alt="Start Shopping">
+        </div>
+        
+        <!-- Offers Section -->
+        <div class="container">
+            <div class="section-header">
+                <h2>Today's Special Offers</h2>
+                <p>Don't miss these limited time deals</p>
+            </div>
+            <div class="row g-4">
+                <!-- First Offer Box -->
+                <div class="col-md-4">
+                    <div class="offer-card tech-deals">
+                        <div class="offer-badge">HOT DEAL</div>
+                        <h3><i class="fas fa-microchip"></i> Tech Bonanza</h3>
+                        <div class="product-grid">
+                            <img src="https://images.unsplash.com/photo-1546054454-aa26e2b734c7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Keyboard">
+                            <img src="https://images.unsplash.com/photo-1527814050087-3793815479db?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Mouse">
+                            <img src="https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Pendrive">
+                        </div>
+                        <div class="offer-details">
+                            <p class="discount">50% - 80% OFF</p>
+                            <p class="expiry">Limited Time Offer!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Second Offer Box -->
+                <div class="col-md-4">
+                    <div class="offer-card fashion-deals">
+                        <div class="offer-badge">TRENDING</div>
+                        <h3><i class="fas fa-tshirt"></i> Fashion Finds</h3>
+                        <div class="product-grid">
+                            <img src="https://images.unsplash.com/photo-1566150902887-9679ecc155ba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Luggage">
+                            <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="T-Shirt">
+                            <img src="https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Mobile">
+                        </div>
+                        <div class="offer-details">
+                            <p class="discount">30% - 50% OFF</p>
+                            <p class="expiry">Exclusive Today!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Third Offer Box -->
+                <div class="col-md-4">
+                    <div class="info-card">
+                        <div class="info-content">
+                            <h3><i class="fas fa-store"></i> About E-MART</h3>
+                            <p>India's premier destination for fashion and electronics. We're proud to serve our growing community of shoppers with quality products and exceptional service.</p>
+                            
+                            <div class="loading-spinner">
+                                <div class="spinner"></div>
+                            </div>
+                            
+                            <div class="stats">
+                                <div class="stat-item">
+                                    <div class="stat-value">1,250+</div>
+                                    <div class="stat-label">Products Available</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value">5,000+</div>
+                                    <div class="stat-label">Orders Completed</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Products Section -->
+        <div class="container mt-5">
+            <div class="section-header">
+                <h2>Featured Products</h2>
+                <p>Curated selection of premium items</p>
+            </div>
+            <div class="row g-4">
+                <!-- Product Card 1 -->
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product-card">
+                        <div class="product-badge">New</div>
+                        <div class="product-image-container">
+                            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" class="product-image" alt="Running Shoes">
+                        </div>
+                        <div class="product-details">
+                            <h3 class="product-title">Premium Running Shoes</h3>
+                            <div class="price-container">
+                                <span class="current-price">$89.99</span>
+                                <span class="original-price">$129.99</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Card 2 -->
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product-card">
+                        <div class="product-badge">Sale</div>
+                        <div class="product-image-container">
+                            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" class="product-image" alt="Smart Watch">
+                        </div>
+                        <div class="product-details">
+                            <h3 class="product-title">Smart Watch Pro</h3>
+                            <div class="price-container">
+                                <span class="current-price">$199.99</span>
+                                <span class="original-price">$249.99</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Card 3 -->
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product-card">
+                        <div class="product-image-container">
+                            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" class="product-image" alt="Headphones">
+                        </div>
+                        <div class="product-details">
+                            <h3 class="product-title">Wireless Headphones</h3>
+                            <div class="price-container">
+                                <span class="current-price">$59.99</span>
+                                <span class="original-price">$79.99</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Card 4 -->
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product-card">
+                        <div class="product-badge">Popular</div>
+                        <div class="product-image-container">
+                            <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" class="product-image" alt="Smartphone">
+                        </div>
+                        <div class="product-details">
+                            <h3 class="product-title">Latest Smartphone Model</h3>
+                            <div class="price-container">
+                                <span class="current-price">$699.99</span>
+                                <span class="original-price">$799.99</span>
+                            </div>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </div>

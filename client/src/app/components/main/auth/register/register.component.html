@@ -1,0 +1,183 @@
+<section class="container">
+  <div class="login-container">
+    <div class="circle circle-one"></div>
+    <div class="form-container">
+      <img src="https://raw.githubusercontent.com/hicodersofficial/glassmorphism-login-form/master/assets/illustration.png" 
+           alt="illustration" class="illustration" />
+      <h1 class="opacity">Sign Up</h1>
+
+      <!-- spinner -->
+      <div *ngIf="isLoading" class="spinner-border text-light" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+
+      <!-- alert -->
+      <div *ngIf="isEmpty" class="alert alert-danger alert-dismissible fade show">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ warning }}
+      </div>
+
+      <!-- form 1 -->
+      <form #registerForm1="ngForm" (ngSubmit)="onStageOneComplete(registerForm1)" *ngIf="!Register1" novalidate>
+        <!-- email -->
+        <input
+          type="email"
+          name="email"
+          placeholder="Email Address"
+          [ngClass]="{ 'is-invalid': email.errors && email.touched }"
+          ngModel
+          #email="ngModel"
+          required
+          pattern="^[a-z0-9\.]+@[a-z0-9]+\.[a-z]+$"
+        />
+        <div *ngIf="email.touched && email.errors" class="validation-message">
+          <div *ngIf="email.errors?.required">Email is required</div>
+          <div *ngIf="email.errors?.pattern">Please enter a valid email</div>
+        </div>
+
+        <!-- password -->
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          [ngClass]="{ 'is-invalid': password.errors && password.touched }"
+          ngModel
+          #password="ngModel"
+          required
+          minlength="4"
+        />
+        <div *ngIf="password.touched && password.errors" class="validation-message">
+          <div *ngIf="password.errors?.required">Password is required</div>
+          <div *ngIf="password.errors?.minlength">Password must be at least 4 characters</div>
+        </div>
+
+        <!-- password confirmation -->
+        <input
+          type="password"
+          name="password2"
+          placeholder="Confirm Password"
+          [ngClass]="{ 'is-invalid': password2.errors && password2.touched }"
+          ngModel
+          #password2="ngModel"
+          required
+          minlength="4"
+        />
+        <div *ngIf="password2.touched && password2.errors" class="validation-message">
+          <div *ngIf="password2.errors?.required">Password confirmation is required</div>
+        </div>
+
+        <button type="submit" [disabled]="!registerForm1.valid">Next <i class="fa fa-arrow-right ml-2"></i></button>
+      </form>
+
+      <!-- form 2 -->
+      <form #registerForm2="ngForm" (ngSubmit)="onRegisterUser(registerForm2)" *ngIf="Register1" novalidate>
+
+        <!-- ID number -->
+        <input
+          type="text"
+          name="cardId"
+          placeholder="ID Number"
+          [ngClass]="{ 'is-invalid': cardId.errors && cardId.touched }"
+          ngModel
+          #cardId="ngModel"
+          required
+          minlength="9"
+          maxlength="9"
+          pattern="^[0-9]+$"
+        />
+        <div *ngIf="cardId.touched && cardId.errors" class="validation-message">
+          <div *ngIf="cardId.errors?.required">ID number is required</div>
+          <div *ngIf="cardId.errors?.minlength">ID number must contain 9 digits</div>
+          <div *ngIf="cardId.errors?.pattern">ID number is invalid</div>
+        </div>
+
+        <!-- first name -->
+        <input
+          type="text"
+          name="fname"
+          placeholder="First Name"
+          [ngClass]="{ 'is-invalid': fname.errors && fname.touched }"
+          ngModel
+          #fname="ngModel"
+          required
+          minlength="2"
+        />
+        <div *ngIf="fname.touched && fname.errors" class="validation-message">
+          <div *ngIf="fname.errors?.required">First name is required</div>
+          <div *ngIf="fname.errors?.minlength">First name must be at least 2 characters</div>
+        </div>
+
+        <!-- last name -->
+        <input
+          type="text"
+          name="lname"
+          placeholder="Last Name"
+          [ngClass]="{ 'is-invalid': lname.errors && lname.touched }"
+          ngModel
+          #lname="ngModel"
+          required
+          minlength="2"
+        />
+        <div *ngIf="lname.touched && lname.errors" class="validation-message">
+          <div *ngIf="lname.errors?.required">Last name is required</div>
+          <div *ngIf="lname.errors?.minlength">Last name must be at least 2 characters</div>
+        </div>
+
+        <!-- city -->
+        <div class="form-group">
+          <input
+            type="text"
+            name="city"
+            placeholder="Enter City"
+            [ngClass]="{ 'is-invalid': city.errors && city.touched }"
+            ngModel
+            #city="ngModel"
+            required
+          />
+          <div *ngIf="city.touched && city.errors" class="validation-message">
+            <div *ngIf="city.errors?.required">City is required</div>
+          </div>
+        </div>
+
+        <!-- street -->
+        <input
+          type="text"
+          name="street"
+          placeholder="Street Address"
+          [ngClass]="{ 'is-invalid': street.errors && street.touched }"
+          ngModel
+          #street="ngModel"
+          required
+          minlength="2"
+        />
+        <div *ngIf="street.touched && street.errors" class="validation-message">
+          <div *ngIf="street.errors?.required">Street is required</div>
+          <div *ngIf="street.errors?.minlength">Street must be at least 2 characters</div>
+        </div>
+
+        <button type="submit" [disabled]="!registerForm2.valid">Register</button>
+      </form>
+    </div>
+    <div class="circle circle-two"></div>
+  </div>
+</section>
+
+<!-- Modal -->
+<div class="modal" id="registerModal" [ngStyle]="{ display: display }">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" [innerHTML]="modalHeader ? modalHeader : 'Success!'"></h4>
+        <button type="button" (click)="onCloseHandled()" class="close" data-dismiss="modal" routerLink="/">
+          &times;
+        </button>
+      </div>
+      <div class="modal-body" *ngIf="modalBody" [innerHTML]="modalBody"></div>
+      <div class="modal-footer">
+        <button type="button" (click)="onCloseHandled()" class="btn btn-danger" data-dismiss="modal" routerLink="/">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

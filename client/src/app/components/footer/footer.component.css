@@ -1,0 +1,28 @@
+.footer1 {
+    width: 100%;
+    background: linear-gradient(135deg, #007bff, #5bccf6);
+    padding: 15px 0;
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .footer-note {
+    font-size: 16px;
+    color: white;
+    font-family: 'Arial', sans-serif;
+    font-weight: 500;
+  }
+  
+  .footer-note a {
+    color: #add8e6;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-note a:hover {
+    color: #81d4fa;
+  }
+  

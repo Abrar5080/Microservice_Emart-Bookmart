@@ -1,0 +1,100 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+/* Table Container */
+.table-container {
+    padding: 20px;
+    background: linear-gradient(135deg, #ffffff, #e3e6e8);
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Table Styles */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.table th, .table td {
+    padding: 14px;
+    text-align: left;
+    font-size: 16px;
+}
+
+/* Header Styling */
+.table thead {
+    background: linear-gradient(90deg, #007bff, #0056b3);
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Alternating Rows */
+.table tbody tr:nth-child(even) {
+    background: #f8f9fa;
+}
+
+.table tbody tr:nth-child(odd) {
+    background: #e9ecef;
+}
+
+/* Hover Effect */
+.table tbody tr:hover {
+    background: #cce5ff;
+    transform: scale(1.02);
+    transition: all 0.3s ease;
+}
+
+/* Border Styling */
+.table td, .table th {
+    border-bottom: 2px solid #ddd;
+}
+
+/* Buttons */
+.btn {
+    font-size: 16px;
+    padding: 10px 15px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border: none;
+}
+
+.btn-info {
+    background-color: #17a2b8;
+    border: none;
+}
+
+/* Form Styles */
+.form-control {
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.btn-submit {
+    background-color: #28a745;
+    color: white;
+    font-size: 18px;
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.container {
+    background: transparent !important;
+}

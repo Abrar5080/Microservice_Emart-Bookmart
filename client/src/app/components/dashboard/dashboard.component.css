@@ -1,0 +1,73 @@
+/* Spinner */
+.spinner-border.text-danger {
+    border-color: #007bff !important;
+  }
+  
+  /* Dashboard layout */
+  .bg-light {
+    background-color: #f0f8ff !important; /* Light blue background for cards */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Button styles */
+  .btn-warning {
+    background-color: #26c6da; /* Light blue background for cart button */
+    border-color: #26c6da;
+    color: black;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 10px 15px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-warning:hover {
+    background-color: #1ab4c8; /* Darker blue on hover */
+  }
+  
+  .btn-danger {
+    background-color: #d32f2f;
+    border-color: #d32f2f;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 10px 15px;
+  }
+  
+  .btn-danger:hover {
+    background-color: #b71c1c;
+  }
+  
+  /* Modal */
+  .modal-header {
+    background-color: #26c6da;
+    color: black;
+    font-weight: bold;
+  }
+  
+  .modal-footer .btn-danger {
+    background-color: #d32f2f;
+    border-color: #d32f2f;
+  }
+  
+  .modal-footer .btn-danger:hover {
+    background-color: #b71c1c;
+  }
+  
+  /* Modal content */
+  .modal-body {
+    font-size: 16px;
+    color: #333;
+  }
+  
+  /* Cart button */
+  .btn-warning .fa-shopping-basket {
+    margin-right: 8px;
+  }
+  
+  /* Sidebar card */
+  .card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+  }
+  

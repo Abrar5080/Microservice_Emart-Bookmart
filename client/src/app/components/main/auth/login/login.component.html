@@ -1,0 +1,79 @@
+<!-- login.component.html -->
+<section class="container">
+  <div class="login-container">
+      <div class="circle circle-one"></div>
+      <div class="form-container">
+          <img src="https://raw.githubusercontent.com/hicodersofficial/glassmorphism-login-form/master/assets/illustration.png" 
+               alt="illustration" class="illustration" />
+          <h1 class="opacity">Sign In</h1>
+
+          <!-- Spinner -->
+          <div *ngIf="isLoading" class="spinner-border text-light" role="status">
+              <span class="sr-only">Loading...</span>
+          </div>
+
+          <!-- Login Form -->
+          <form #loginForm="ngForm" (ngSubmit)="onLoginUser(loginForm)" *ngIf="!isLoading" novalidate>
+              <!-- Warning Message -->
+              <div *ngIf="isEmpty" class="alert alert-danger alert-dismissible fade show">
+                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+                  {{ warning }}
+              </div>
+
+              <!-- Email Input -->
+              <input type="email" 
+                     name="email" 
+                     [ngClass]="{ 'is-invalid': emailInput.errors && emailInput.touched }"
+                     placeholder="Email Address"
+                     ngModel
+                     #emailInput="ngModel"
+                     required
+                     pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+              />
+              <div *ngIf="emailInput.touched && emailInput.errors" class="validation-message">
+                  <div *ngIf="emailInput.errors?.required">Email is required</div>
+                  <div *ngIf="emailInput.errors?.pattern">Please enter a valid email</div>
+              </div>
+
+              <!-- Password Input -->
+              <input type="password" 
+                     name="password"
+                     [ngClass]="{ 'is-invalid': passwordInput.errors && passwordInput.touched }"
+                     placeholder="Password"
+                     ngModel
+                     #passwordInput="ngModel"
+                     required
+                     minlength="4"
+              />
+              <div *ngIf="passwordInput.touched && passwordInput.errors" class="validation-message">
+                  <div *ngIf="passwordInput.errors?.required">Password is required</div>
+                  <div *ngIf="passwordInput.errors?.minlength">Password must be at least 4 characters</div>
+              </div>
+
+              <!-- Submit Button -->
+              <button type="submit" [disabled]="!loginForm.valid">LOGIN</button>
+          </form>
+      </div>
+      <div class="circle circle-two"></div>
+  </div>
+</section>
+
+<!-- Modal -->
+<div class="modal" id="loginModal" [ngStyle]="{ display: display }">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h4 class="modal-title" [innerHTML]="modalHeader ? modalHeader : 'Success!'"></h4>
+              <button type="button" (click)="onCloseHandled()" class="close" data-dismiss="modal" routerLink="/">
+                  &times;
+              </button>
+          </div>
+          <div class="modal-body" *ngIf="modalBody" [innerHTML]="modalBody"></div>
+          <div class="modal-footer">
+              <button type="button" (click)="onCloseHandled()" class="btn btn-danger" data-dismiss="modal" routerLink="/">
+                  Close
+              </button>
+          </div>
+      </div>
+  </div>
+</div>
